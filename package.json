@@ -6,8 +6,12 @@
   "author": "JM",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^8.1.0",
+    "pg": "^7.12.1",
+    "pg-hstore": "^2.3.3",
     "sequelize": "^5.19.4",
-    "sqlite3": "^4.1.0"
+    "sqlite3": "^4.1.0",
+    "tedious": "^6.4.0"
   },
   "scripts": {
     "start": "node index.js"
