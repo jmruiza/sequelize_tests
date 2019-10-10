@@ -1,20 +1,27 @@
 require('dotenv').config()
-console.log(process.env.DB_NAME, process.env.DB_PASS, process.env.DB_USER);
 
 // Setting up a connection
 const { Sequelize, Model, DataTypes } = require('sequelize');
 
-// Passing parameters separately
-const Connection = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
-    dialect: 'mssql',
-    host: 'localhost',
-    server: 'DESKTOP-C01AF5A\\COMPAC',
+
+// Passing parameters separately (BEFORE: Set values in .env file)
+const Connection = new Sequelize({
+  dialect: 'mssql',
+  database: process.env.DB_NAME,  // database
+  username: process.env.DB_USER,  // username
+  password: process.env.DB_PASS,  // password
+  port: '16044',
+  loggin: true,
+  host: 'localhost',
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10000
+  },
     dialectOptions: {
-        encrypt: true,
-        options: {
-            useUTC: false,
-            dateFirst: 1,
-        }
+      instanceName: process.env.DB_INSTANCE,
+      encrypt: true,
+      trustedConnection: false
     }
 });
 
