@@ -7,22 +7,26 @@ const { Sequelize, Model, DataTypes } = require('sequelize');
 // Passing parameters separately (BEFORE: Set values in .env file)
 const Connection = new Sequelize({
   dialect: 'mssql',
-  database: process.env.DB_NAME,  // database
-  username: process.env.DB_USER,  // username
-  password: process.env.DB_PASS,  // password
+  dialectModulePath: 'sequelize-msnodesqlv8',
+  server: process.env.DB_SERVER,
+  database: process.env.DB_NAME,
+  username: process.env.DB_USER,
+  password: process.env.DB_PASS,
   port: '16044',
   loggin: true,
-  host: 'localhost',
+  
   pool: {
-    max: 5,
     min: 0,
+    max: 5,
     idle: 10000
   },
-    dialectOptions: {
-      instanceName: process.env.DB_INSTANCE,
-      encrypt: true,
-      trustedConnection: false
-    }
+
+  dialectOptions: {
+    instanceName: process.env.DB_INSTANCE,
+    encrypt: true,
+    trustedConnection: true
+  }
+
 });
 
 // Testing connection
