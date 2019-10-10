@@ -12,21 +12,17 @@ const Connection = new Sequelize({
  
   dialectOptions: {
     //connectionString,
-    driver: 'SQL Server Native Client 10.0',
+    driver: 'SQL Server Native Client 12.0',
     instanceName: process.env.DB_INSTANCE,
-    trustedConnection: true
+    //trustedConnection: true
   },
 
-  pool: {
-    min: 0,
-    max: 5,
-    idle: 10000
-  },
-
-  host: 'localhost',
-  //username: process.env.DB_USER,
-  //password: process.env.DB_PASS,
+  host: '127.0.0.1',
+  username: process.env.DB_USER,
+  password: process.env.DB_PASS,
   database: process.env.DB_DATABASE,
+  port: '16044',
+  server: process.env.DB_SERVER
 });
 
 // Testing connection
