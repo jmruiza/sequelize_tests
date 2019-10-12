@@ -4,6 +4,7 @@ var Connection = require('tedious').Connection;
 var Request = require('tedious').Request;
 var TYPES = require('tedious').TYPES;
 var async = require('async');
+var queries = require('./queries');
 
 // Create connection to database
 var config = {
@@ -29,8 +30,7 @@ function getVehicles(callback) {
 
   // Read all rows from table
   request = new Request(
-    //'SELECT @@VERSION',
-    'SELECT VehicleID, VehicleName, Brand, Model, PlateNumber, EngineSerialNumber FROM orgVehicle WHERE DeletedOn IS NULL;',
+    queries.getVehicles,
     function(err, rowCount, rows) {
       if (err) {
         console.log(err);
@@ -47,7 +47,7 @@ function getVehicles(callback) {
   request.on('row', function(columns) {
       columns.forEach(function(column) {
           if (column.value === null) {
-              console.log('NULL');
+              result += "NULL ";
           } else {
               result += column.value + " ";
           }
@@ -65,7 +65,7 @@ function getEmployees(callback) {
 
   // Read all rows from table
   request = new Request(
-    'SELECT E.EmployeeID, C.FirstName, C.LastNameFather, C.LastNameMother, P.PositionName FROM orgEmployee E JOIN orgContact C ON E.ContactID = C.ContactID JOIN orgEmployeePosition P ON E.PositionID = P.EmployeePositionID WHERE E.DeletedOn IS NULL;',
+    queries.getEmployees,
     function(err, rowCount, rows) {
       if (err) {
         callback(err);
@@ -80,11 +80,11 @@ function getEmployees(callback) {
   var result = "";
   request.on('row', function(columns) {
       columns.forEach(function(column) {
-          if (column.value === null) {
-              console.log('NULL');
-          } else {
-              result += column.value + " ";
-          }
+        if (column.value === null) {
+            result += "NULL ";
+        } else {
+            result += column.value + " ";
+        }
       });
       console.log(result);
       result = "";
@@ -99,7 +99,7 @@ function getDepots(callback) {
 
   // Read all rows from table
   request = new Request(
-    'SELECT DepotID, DepotName FROM orgDepot WHERE DeletedOn IS NULL;',
+    queries.getDepots,
     function(err, rowCount, rows) {
       if (err) {
         callback(err);
@@ -114,11 +114,11 @@ function getDepots(callback) {
   var result = "";
   request.on('row', function(columns) {
       columns.forEach(function(column) {
-          if (column.value === null) {
-              console.log('NULL');
-          } else {
-              result += column.value + " ";
-          }
+        if (column.value === null) {
+          result += "NULL ";
+        } else {
+          result += column.value + " ";
+        }
       });
       console.log(result);
       result = "";
@@ -127,7 +127,6 @@ function getDepots(callback) {
   // Execute SQL statement
   connection.execSql(request);
 }
-
 // Attempt to connect and execute queries if connection goes through
 connection.on('connect', function(err) {
   if (err) {
@@ -143,5 +142,3 @@ connection.on('connect', function(err) {
     ])
   }
 });
-
-// Make queries
