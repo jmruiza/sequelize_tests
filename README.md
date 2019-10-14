@@ -1,4 +1,4 @@
-# Connection test with sequalize
+# Interface connector
 
 ## Run
 
@@ -11,6 +11,8 @@ yarn start
 ```
 
 ## MsSQL Server
+
+* [Docker container mssql](./docker/mssql-server/README.md)
 
 ### Guidelines
 * [Create Node.js apps using SQL Server on Windows](https://www.microsoft.com/en-us/sql-server/developer-get-started/node/windows/)
