@@ -1,7 +1,7 @@
 module.exports = {
     getVehicles: `
             SELECT VehicleID, VehicleName, Brand, Model, PlateNumber, EngineSerialNumber 
-            FROM dbo.orgVehicle 
+            FROM orgVehicle 
             WHERE DeletedOn IS NULL;
         `,
     getEmployees: `

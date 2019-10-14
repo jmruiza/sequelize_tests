@@ -17,11 +17,11 @@ This container uses a volume (```./docker/mssql/backups:/var/opt/mssql/backups``
 
 bash
 ```bash
-sudo docker exec -it sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P '<ENV.DB_PASS>' -Q 'RESTORE FILELISTONLY FROM DISK = "/var/opt/mssql/backups/<BACKUP_FILE>.bak"' | tr -s ' ' | cut -d ' ' -f 1-2
+sudo docker exec -it mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P '<ENV.DB_PASS>' -Q 'RESTORE FILELISTONLY FROM DISK = "/var/opt/mssql/backups/<BACKUP_FILE>.bak"' | tr -s ' ' | cut -d ' ' -f 1-2
 ```
 PowerShell
 ```PowerShell
-docker exec -it sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "<ENV.DB_PASS>" -Q "RESTORE FILELISTONLY FROM DISK = '/var/opt/mssql/backups/<BACKUP_FILE>.bak'"
+docker exec -it mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "<ENV.DB_PASS>" -Q "RESTORE FILELISTONLY FROM DISK = '/var/opt/mssql/backups/<BACKUP_FILE>.bak'"
 ````
 So you should see output similar to the following:
 
@@ -36,12 +36,12 @@ DB_NAME_Log     C:\DB_NAME.ldf
 
 bash
 ```bash
-sudo docker exec -it sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P '<ENV.DB_PASS>' -Q 'RESTORE DATABASE DB_NAME FROM DISK = "/var/opt/mssql/backup/<BACKUP_FILE>.bak" WITH MOVE "DB_NAME" TO "/var/opt/mssql/data/DB_NAME.mdf", MOVE "DB_NAME_Log" TO "/var/opt/mssql/data/DB_NAME.ldf"'
+sudo docker exec -it mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P '<ENV.DB_PASS>' -Q 'RESTORE DATABASE DB_NAME FROM DISK = "/var/opt/mssql/backup/<BACKUP_FILE>.bak" WITH MOVE "DB_NAME" TO "/var/opt/mssql/data/DB_NAME.mdf", MOVE "DB_NAME_Log" TO "/var/opt/mssql/data/DB_NAME.ldf"'
 ```
 
 PowerShell
 ```PowerShell
-docker exec -it sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "<ENV.DB_PASS>" -Q 'RESTORE DATABASE DB_NAME FROM DISK = "/var/opt/mssql/backup/<BACKUP_FILE>.bak" WITH MOVE "DB_NAME" TO "/var/opt/mssql/data/DB_NAME.mdf", MOVE "DB_NAME_Log" TO "/var/opt/mssql/data/DB_NAME.ldf"'
+docker exec -it mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "<ENV.DB_PASS>" -Q 'RESTORE DATABASE DB_NAME FROM DISK = "/var/opt/mssql/backup/<BACKUP_FILE>.bak" WITH MOVE "DB_NAME" TO "/var/opt/mssql/data/DB_NAME.mdf", MOVE "DB_NAME_Log" TO "/var/opt/mssql/data/DB_NAME.ldf"'
 ```
 
 So now you can load your MSSQL database in a container :)
@@ -49,8 +49,14 @@ So now you can load your MSSQL database in a container :)
 **For use the bash in the container you most use the command**
 
 ```bash
-sudo docker exec -it sqlserver /bin/bash  
+sudo docker exec -it mssql-server /bin/bash  
 ```
+**Make queries**
+
+```bash
+docker exec -it mssql-server /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P '<ENV.DB_PASS>' -Q '<QUERY>;'
+```
+
 
 ## Resources
 * [Quickstart: Run SQL Server container images with Docker](https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-2017&pivots=cs1-bash)

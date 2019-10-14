@@ -6,11 +6,6 @@ var TYPES = require('tedious').TYPES;
 var async = require('async');
 var queries = require('./queries');
 
-console.log({
-    userName: process.env.DB_USER,
-    password: process.env.DB_PASS,
-});
-
 // Create connection to database
 var config = {
   server: 'localhost',
@@ -22,11 +17,13 @@ var config = {
     }
   },
   options: {
-      port: parseInt(process.env.DB_PORT,10),
+      //port: parseInt(process.env.DB_PORT,10),
       database: process.env.DB_NAME,
       //instanceName: process.env.DB_INSTANCE // Commented in MacOS 
   }
 }
+
+console.log(config);
 
 var connection = new Connection(config);
 
