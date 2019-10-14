@@ -11,3 +11,4 @@ services:
       - 1433:1433
     volumes: 
       - ./docker/mssql-server/backups:/var/opt/.backups
+     #- ./docker/mssql-server/mssql:/var/opt/mssql
