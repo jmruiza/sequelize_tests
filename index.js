@@ -16,9 +16,9 @@ var config = {
     }
   },
   options: {
-      //port: 16044,
+      port: 1433,
       database: process.env.DB_DATABASE,
-      instanceName: process.env.DB_INSTANCE
+      //instanceName: process.env.DB_INSTANCE // Commented in MacOS 
   }
 }
 

@@ -9,5 +9,4 @@ services:
     ports:
       - "1433:1433"
     volumes: 
-      - "./docker/mssql-server/.data:/var/opt/mssql"
-     #  - "./docker/mssql-server/backups:/var/opt/.backups"
+      - "./docker/mssql-server/backups:/var/opt/.backups"
