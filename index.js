@@ -7,9 +7,8 @@ var async = require('async');
 var queries = require('./queries');
 
 console.log({
-  port: process.env.DB_PORT,
-  database: process.env.DB_DATABASE,
-  //instanceName: process.env.DB_INSTANCE // Commented in MacOS 
+    userName: process.env.DB_USER,
+    password: process.env.DB_PASS,
 });
 
 // Create connection to database
@@ -24,7 +23,7 @@ var config = {
   },
   options: {
       port: parseInt(process.env.DB_PORT,10),
-      database: process.env.DB_DATABASE,
+      database: process.env.DB_NAME,
       //instanceName: process.env.DB_INSTANCE // Commented in MacOS 
   }
 }
