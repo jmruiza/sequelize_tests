@@ -10,7 +10,22 @@ const sequelize = new Sequelize(
     options: {
       useUTC: false,
       dateFirst: 1,
-      port: parseInt(process.env.DB_PORT)
+      //port: parseInt(process.env.DB_PORT)
+      port: 1433
+    }
+  }
+});
+
+console.log(process.env.DB_NAME, 
+  process.env.DB_USER, 
+  process.env.DB_PASS, {
+  dialect: 'mssql',
+  dialectOptions: {
+    options: {
+      useUTC: false,
+      dateFirst: 1,
+      //port: parseInt(process.env.DB_PORT)
+      port: 1433
     }
   }
 });

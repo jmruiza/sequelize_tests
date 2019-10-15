@@ -1,0 +1,5 @@
+{
+    "dialect": "mssql",
+    "port": 1433,
+    "host": "localhost"
+}

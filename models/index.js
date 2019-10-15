@@ -3,12 +3,22 @@ require('dotenv').config()
 const queries = require('./queries');
 const SequelizeAuto = require('sequelize-auto')
 
+sequelize-auto -h localhost -d JFVO5 -u sa -x Compaq2019. -p 1433  --dialect mssql -o models -C
+sequelize-auto -o models -h localhost -d JFVO5 -u sa -x Compaq2019. -p 1433  --dialect mssql -c "models/config.json"
+
 var auto = new SequelizeAuto(
   'JFVO', 
   'sa', 
   'Compaq2019.', {
-    host: 'localhost',
     dialect: 'mssql',
+    dialectOptions: {
+      options: {
+        useUTC: false,
+        dateFirst: 1,
+        //port: parseInt(process.env.DB_PORT)
+        port: 1433
+      }
+    }
 });
 
 auto.run(function (err) {
