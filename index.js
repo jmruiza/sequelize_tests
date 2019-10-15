@@ -17,9 +17,9 @@ var config = {
     }
   },
   options: {
-      //port: 16044,
+      // port: 16044,
       database: process.env.DB_NAME,
-      instanceName: process.env.DB_INSTANCE
+      // instanceName: process.env.DB_INSTANCE
   }
 }
 

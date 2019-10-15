@@ -1,3 +1,5 @@
 node_modules/
 software/
 .env
+docker/mssql-server/mssql
+docker/mssql-server/backup
