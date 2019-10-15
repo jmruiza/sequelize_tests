@@ -16,6 +16,7 @@
     "tedious": "^6.4.0"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "start-sequelize": "node index_sequelize.js"
   }
 }
