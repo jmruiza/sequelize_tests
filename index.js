@@ -1,5 +1,17 @@
 require('dotenv').config()
 
+const sequelize = new Sequelize('database', 'username', 'password', {
+  dialect: 'mssql',
+  dialectOptions: {
+    options: {
+      useUTC: false,
+      dateFirst: 1,
+    }
+  }
+})
+
+/*
+
 var Connection = require('tedious').Connection;
 var Request = require('tedious').Request;
 var TYPES = require('tedious').TYPES;
@@ -20,7 +32,7 @@ var config = {
       // port: 16044,
       //port: parseInt(process.env.DB_PORT,10),
       database: process.env.DB_NAME,
-      //instanceName: process.env.DB_INSTANCE // Commented in MacOS 
+      instanceName: process.env.DB_INSTANCE // Commented in MacOS 
   }
 }
 
@@ -145,3 +157,4 @@ connection.on('connect', function(err) {
     ])
   }
 });
+*/
