@@ -18,8 +18,9 @@ var config = {
   },
   options: {
       // port: 16044,
+      //port: parseInt(process.env.DB_PORT,10),
       database: process.env.DB_NAME,
-      // instanceName: process.env.DB_INSTANCE
+      //instanceName: process.env.DB_INSTANCE // Commented in MacOS 
   }
 }
 
